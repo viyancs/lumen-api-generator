@@ -1,0 +1,29 @@
+{
+  "authors": [
+    {
+      "name": "viyancs",
+      "email": "msofyancs@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Viyancs\\LumenApiGeneratorEloquent\\": "src/"
+    }
+  },
+  "description": "simple tools for building REST API on Lumen Framework",
+  "homepage": "https://github.com/viyancs/lumen-api-generator",
+  "keywords": [
+    "rest",
+    "api",
+    "lumen api",
+    "lumen api generator",
+    "laravel lumen"
+  ],
+  "license": "MIT",
+  "name": "viyancs/lumen-api-generator",
+  "require": {
+    "illuminate/database": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+    "illuminate/support": "^5.5|^6.0|^7.0|^8.0|^8.17",
+    "doctrine/dbal": "^2.5"
+  }
+}

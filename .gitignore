@@ -2,3 +2,4 @@ vendor/
 .idea
 *.swp
 .phpunit.result.cache
+.composer.lock

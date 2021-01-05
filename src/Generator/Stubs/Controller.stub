@@ -1,0 +1,60 @@
+<?php namespace {{controller.namespace}};
+
+use {{controller.namespaceBase}}\BaseController;
+use {{model.fullName}};
+use {{service.fullName}};
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\CommonUtil;
+
+class {{controller.name}} extends BaseController
+{
+    /**
+     * declare service class
+     * {{model.fullName}} service class
+     * @var {{service.varName}}
+     */
+    public ${{service.varName}};
+    public function __construct()
+    {
+        parent::__construct();
+        $this->{{service.varName}} = new {{service.varName}}();
+    }
+
+    /**
+     * Index action
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $page = 0;
+        $limit = 0;
+        $orderBy = [];
+        $where = [];
+        if (!empty($request->page) && !empty($request->limit)) {
+            $page = $request->page;
+            $limit = $request->limit;
+        }
+        if (!empty($request->order->column) && !empty($request->order->value)) {
+            $orderBy[0] = $request->order->column;
+            $orderBy[1] = $request->order->value;
+        }
+        if (!empty($request->start_date) && !empty($request->end_date)) {
+            $where['start'] = $request->start_date;
+            $where['end'] = $request->end_date;
+        }
+        ${{model.varName}} = $this->{{service.varName}}->getAllShipment($page, $limit, $orderBy, $where);
+        return response()->json(
+            CommonUtil::renderSuccess(
+                Response::HTTP_OK,
+                '',
+                ${{model.varName}}->toArray()
+            )
+        );
+    }
+
+}

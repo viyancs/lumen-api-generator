@@ -1,6 +1,6 @@
 <?php
 
-namespace DDiimmkkaass\Api\Generator;
+namespace Viyancs\Api\Generator;
 
 use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Console\Command;
@@ -39,6 +39,7 @@ class CommandApiGenerator extends Command
     protected $stubVariables = [
         'app'         => [],
         'model'       => [],
+        'service'       => [],
         'controller'  => [],
         'route'       => [],
     ];
@@ -65,11 +66,7 @@ class CommandApiGenerator extends Command
     public function fire()
     {
         $this->prepareVariablesForStubs($this->argument('name'));
-
         $this->createController();
-
-        $this->createTransformer();
-
         $this->addRoutes();
     }
 
@@ -189,14 +186,6 @@ class CommandApiGenerator extends Command
     protected function createController()
     {
         $this->createClass('controller');
-    }
-
-    /**
-     *  Create controller class file from a stub.
-     */
-    protected function createTransformer()
-    {
-        $this->createClass('transformer');
     }
 
     /**
